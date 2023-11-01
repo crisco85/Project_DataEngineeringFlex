@@ -1,0 +1,10 @@
+airflow
+airflow.operators.python
+datetime
+os
+dotenv
+requests
+sqlalchemy
+psycopg2
+pandas 
+numpy
