@@ -16,7 +16,7 @@ from export_task import export_data_to_xcom
 # Define los parámetros predeterminados del DAG
 default_args = {
     'owner': 'cristian',
-    'start_date': datetime(2023, 11, 1),
+    'start_date': datetime(2023, 11, 15),
     'schedule_interval': '@daily',
     'retry_delay': timedelta(minutes=5),  # Tiempo de espera entre reintentos
     'retries': 5,  # Número máximo de reintentos en caso de fallo
