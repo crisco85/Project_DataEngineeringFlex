@@ -142,6 +142,7 @@ task3 = PythonOperator(
     python_callable=send_email_alert,
     op_args=['Alerta de peliculas Recientes', '', ['cristiancorrea85@gmail.com'], "{{ ti.xcom_pull(task_ids='task2') }}"],  # Se pasa la información de peliculas desde task2
     provide_context=True,
+    dag=dag,
 )
 
 #Task4: Exportar datos a xcom
@@ -149,6 +150,7 @@ task4 = PythonOperator(
     task_id='export_data_to_xcom',
     python_callable=export_data_to_xcom,
     op_args=[conn_string, 'SELECT * FROM peliculas LIMIT 10'],
+    dag=dag,
 )
 
 # task5: Decidir si enviar un correo de alerta o exportar datos a xcom
@@ -156,6 +158,7 @@ decide_email_or_export_task = PythonOperator(
     task_id='decide_email_or_export',
     python_callable=decide_email_or_export,
     provide_context=True,
+    dag=dag,
 )
 
 #Define la secuencia de tareas: task1 -> task2
