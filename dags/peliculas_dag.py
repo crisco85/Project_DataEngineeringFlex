@@ -1,5 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.decorators import task
+from airflow.providers.postgres.operators.postgres import PostgresOperator
 from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv, find_dotenv
@@ -8,11 +10,14 @@ from sqlalchemy import create_engine
 import psycopg2
 import pandas as pd
 import numpy as np
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Define los parámetros predeterminados del DAG
 default_args = {
     'owner': 'cristian',
-    'start_date': datetime(2023, 11, 1),
+    'start_date': datetime(2023, 11, 15),
     #'schedule_interval': '@daily',
     'retry_delay': timedelta(minutes=5),  # Tiempo de espera entre reintentos
     'retries': 5,  # Número máximo de reintentos en caso de fallo
@@ -28,6 +33,12 @@ database = os.getenv('REDSHIFT_DATABASE')
 user = os.getenv('REDSHIFT_USER')
 password = os.getenv('REDSHIFT_PASSWORD')
 schema = os.getenv('REDSHIFT_SCHEMA')
+
+# Configura la conexión SMTP
+smtp_server = os.getenv('SMTP_SERVER')
+smtp_port = os.getenv('SMTP_PORT')
+smtp_username = os.getenv('SMTP_USERNAME')
+smtp_password = os.getenv('SMTP_PASSWORD')
 
 conn_string = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
 
@@ -99,8 +110,59 @@ def task2():
     except Exception as e:
         print("Error al obtener datos de la API o cargarlos en la base de datos:", str(e))
 
+
+def send_email_alert(subject, body, recipients, movie_data):
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+
+        # Crea el mensaje de correo electrónico
+        msg = MIMEMultipart()
+        msg['From'] = smtp_username
+        msg['To'] = ', '.join(recipients)
+        msg['Subject'] = subject  # Asunto personalizado por nosotros
+
+        # Cuerpo del correo personalizado con detalles de peliculas
+        msg.attach(MIMEText(body, 'plain'))
+
+        # Adjunta detalles de peliculas al cuerpo del correo
+        for movie in movie_data:
+            movie_info = f"ID: {movie['id']}\nTitulo: {movie['title']}\nPopularidad: {movie['popularity']}\nFecha de publicación: {movie['release_date']}\nVoto promedio: {movie['vote_average']}\n\n"
+            msg.attach(MIMEText(movie_info, 'plain'))
+
+        # Envía el correo electrónico
+        server.sendmail(smtp_username, recipients, msg.as_string())
+        server.quit()
+        print('Correo electrónico de alerta enviado con éxito.')
+    except Exception as e:
+        print(f'Error al enviar el correo electrónico: {str(e)}')
+
+
+@task
+def export_data_to_xcom(conn_id, sql_query):
+    export_task = PostgresOperator(
+        task_id='export_data_task',
+        postgres_conn_id=conn_id,
+        sql=sql_query,
+    )
+    return export_task
+
+
 # Crea el DAG
 dag = DAG('peliculas_dag', default_args=default_args, description='DAG para cargar datos de peliculas')
+
+# Función que decide si enviar un mail
+def decide_email_or_export(**kwargs):
+    ti = kwargs['ti']
+    exported_data = ti.xcom_pull(task_ids='export_data_task')
+
+    # Verifica si la variable 'popularity' en los datos exportados es mayor que 100.000
+    popularity_value = exported_data[0]['popularity'] if exported_data else None
+
+    if popularity_value is not None and popularity_value > 100000:
+        return 'send_email_alert'  # Si popularity > 100000, enviar correo
+    return 'export_data_to_xcom'  # En cualquier otro caso, exporta la tabla
 
 #Define las tareas utilizando PythonOperator
 task1 = PythonOperator(
@@ -115,5 +177,32 @@ task2 = PythonOperator(
     dag=dag,
 )
 
+task3 = PythonOperator(
+    task_id='send_email_alert',
+    python_callable=send_email_alert,
+    op_args=['Alerta de peliculas Recientes', '', ['cristiancorrea85@gmail.com'], "{{ ti.xcom_pull(task_ids='task2') }}"],  # Se pasa la información de peliculas desde task2
+    provide_context=True,
+    dag=dag,
+)
+
+#Task4: Exportar datos a xcom
+task4 = PythonOperator(
+    task_id='export_data_to_xcom',
+    python_callable=export_data_to_xcom,
+    op_args=[conn_string, 'SELECT * FROM peliculas LIMIT 10'],
+    dag=dag,
+)
+
+# task5: Decidir si enviar un correo de alerta o exportar datos a xcom
+decide_email_or_export_task = PythonOperator(
+    task_id='decide_email_or_export',
+    python_callable=decide_email_or_export,
+    provide_context=True,
+    dag=dag,
+)
+
+
 #Define la secuencia de tareas: task1 -> task2
-task1 >> task2
+task1 >> task2 >> decide_email_or_export_task
+decide_email_or_export_task >> task3
+decide_email_or_export_task >> task4

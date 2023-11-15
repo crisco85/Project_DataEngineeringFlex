@@ -1,0 +1,36 @@
+[2023-11-15T13:02:38.062+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peliculas_dag.task2 scheduled__2023-11-01T00:00:00+00:00 [queued]>
+[2023-11-15T13:02:38.254+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peliculas_dag.task2 scheduled__2023-11-01T00:00:00+00:00 [queued]>
+[2023-11-15T13:02:38.256+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 6
+[2023-11-15T13:02:38.623+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): task2> on 2023-11-01 00:00:00+00:00
+[2023-11-15T13:02:38.761+0000] {standard_task_runner.py:57} INFO - Started process 161 to run task
+[2023-11-15T13:02:38.787+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'peliculas_dag', 'task2', 'scheduled__2023-11-01T00:00:00+00:00', '--job-id', '17', '--raw', '--subdir', 'DAGS_FOLDER/peliculas_dag.py', '--cfg-path', '/tmp/tmpeakrwvja']
+[2023-11-15T13:02:38.804+0000] {standard_task_runner.py:85} INFO - Job 17: Subtask task2
+[2023-11-15T13:02:40.323+0000] {task_command.py:410} INFO - Running <TaskInstance: peliculas_dag.task2 scheduled__2023-11-01T00:00:00+00:00 [running]> on host f8ec5917e7b3
+[2023-11-15T13:02:43.765+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='cristian' AIRFLOW_CTX_DAG_ID='peliculas_dag' AIRFLOW_CTX_TASK_ID='task2' AIRFLOW_CTX_EXECUTION_DATE='2023-11-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-11-01T00:00:00+00:00'
+[2023-11-15T13:02:46.550+0000] {logging_mixin.py:149} INFO - Error al obtener datos de la API o cargarlos en la base de datos: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+	Is the server running locally and accepting connections on that socket?
+[2023-11-15T13:02:46.620+0000] {python.py:183} INFO - Done. Returned value was: None
+[2023-11-15T13:02:47.509+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=peliculas_dag, task_id=task2, execution_date=20231101T000000, start_date=20231115T130238, end_date=20231115T130247
+[2023-11-15T13:02:49.618+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2023-11-15T13:02:53.896+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-11-15T17:45:16.964+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2 permission to 509
+[2023-11-15T17:45:16.993+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2 permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2'
+[2023-11-15T17:45:17.969+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2 permission to 509
+[2023-11-15T17:45:17.985+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2 permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2'
+[2023-11-15T17:45:19.918+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peliculas_dag.task2 scheduled__2023-11-01T00:00:00+00:00 [queued]>
+[2023-11-15T17:45:20.443+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peliculas_dag.task2 scheduled__2023-11-01T00:00:00+00:00 [queued]>
+[2023-11-15T17:45:20.560+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 6
+[2023-11-15T17:45:24.227+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): task2> on 2023-11-01 00:00:00+00:00
+[2023-11-15T17:45:24.325+0000] {standard_task_runner.py:57} INFO - Started process 111 to run task
+[2023-11-15T17:45:24.424+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'peliculas_dag', 'task2', 'scheduled__2023-11-01T00:00:00+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/peliculas_dag.py', '--cfg-path', '/tmp/tmpljcqyl6w']
+[2023-11-15T17:45:24.443+0000] {standard_task_runner.py:85} INFO - Job 38: Subtask task2
+[2023-11-15T17:45:25.402+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2 permission to 509
+[2023-11-15T17:45:25.469+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2 permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-01T00:00:00+00:00/task_id=task2'
+[2023-11-15T17:45:25.550+0000] {task_command.py:415} INFO - Running <TaskInstance: peliculas_dag.task2 scheduled__2023-11-01T00:00:00+00:00 [running]> on host 566b22168472
+[2023-11-15T17:45:28.157+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='cristian' AIRFLOW_CTX_DAG_ID='peliculas_dag' AIRFLOW_CTX_TASK_ID='task2' AIRFLOW_CTX_EXECUTION_DATE='2023-11-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-11-01T00:00:00+00:00'
+[2023-11-15T17:45:30.068+0000] {logging_mixin.py:151} INFO - Error al obtener datos de la API o cargarlos en la base de datos: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+	Is the server running locally and accepting connections on that socket?
+[2023-11-15T17:45:30.244+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-11-15T17:45:30.922+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=peliculas_dag, task_id=task2, execution_date=20231101T000000, start_date=20231115T174520, end_date=20231115T174530
+[2023-11-15T17:45:32.112+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-11-15T17:45:32.649+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

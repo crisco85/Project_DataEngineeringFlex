@@ -1,0 +1,14 @@
+[2023-11-15T17:38:44.266+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peliculas_dag.task1 manual__2023-11-15T17:38:31.693319+00:00 [queued]>
+[2023-11-15T17:38:44.355+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peliculas_dag.task1 manual__2023-11-15T17:38:31.693319+00:00 [queued]>
+[2023-11-15T17:38:44.365+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 6
+[2023-11-15T17:38:44.542+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): task1> on 2023-11-15 17:38:31.693319+00:00
+[2023-11-15T17:38:44.579+0000] {standard_task_runner.py:57} INFO - Started process 85 to run task
+[2023-11-15T17:38:44.607+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'peliculas_dag', 'task1', 'manual__2023-11-15T17:38:31.693319+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/peliculas_dag.py', '--cfg-path', '/tmp/tmpod67gdip']
+[2023-11-15T17:38:44.620+0000] {standard_task_runner.py:85} INFO - Job 16: Subtask task1
+[2023-11-15T17:38:45.174+0000] {task_command.py:415} INFO - Running <TaskInstance: peliculas_dag.task1 manual__2023-11-15T17:38:31.693319+00:00 [running]> on host 566b22168472
+[2023-11-15T17:38:46.163+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='cristian' AIRFLOW_CTX_DAG_ID='peliculas_dag' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2023-11-15T17:38:31.693319+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-11-15T17:38:31.693319+00:00'
+[2023-11-15T17:38:46.243+0000] {logging_mixin.py:151} INFO - Error al conectar a la base de datos: invalid literal for int() with base 10: 'None'
+[2023-11-15T17:38:46.252+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-11-15T17:38:46.447+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=peliculas_dag, task_id=task1, execution_date=20231115T173831, start_date=20231115T173844, end_date=20231115T173846
+[2023-11-15T17:38:46.771+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-11-15T17:38:47.193+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

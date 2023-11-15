@@ -1,0 +1,14 @@
+[2023-11-15T14:30:43.718+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peliculas_dag.send_email_alert manual__2023-11-15T14:30:31.749068+00:00 [queued]>
+[2023-11-15T14:30:43.731+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peliculas_dag.send_email_alert manual__2023-11-15T14:30:31.749068+00:00 [queued]>
+[2023-11-15T14:30:43.731+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 6
+[2023-11-15T14:30:43.757+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): send_email_alert> on 2023-11-15 14:30:31.749068+00:00
+[2023-11-15T14:30:43.765+0000] {standard_task_runner.py:57} INFO - Started process 155 to run task
+[2023-11-15T14:30:43.770+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'peliculas_dag', 'send_email_alert', 'manual__2023-11-15T14:30:31.749068+00:00', '--job-id', '108', '--raw', '--subdir', 'DAGS_FOLDER/peliculas_dag.py', '--cfg-path', '/tmp/tmppuxt8rem']
+[2023-11-15T14:30:43.771+0000] {standard_task_runner.py:85} INFO - Job 108: Subtask send_email_alert
+[2023-11-15T14:30:43.841+0000] {task_command.py:410} INFO - Running <TaskInstance: peliculas_dag.send_email_alert manual__2023-11-15T14:30:31.749068+00:00 [running]> on host b604b9149076
+[2023-11-15T14:30:43.986+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='cristian' AIRFLOW_CTX_DAG_ID='peliculas_dag' AIRFLOW_CTX_TASK_ID='send_email_alert' AIRFLOW_CTX_EXECUTION_DATE='2023-11-15T14:30:31.749068+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-11-15T14:30:31.749068+00:00'
+[2023-11-15T14:30:43.989+0000] {logging_mixin.py:149} INFO - Error al enviar el correo electrónico: please run connect() first
+[2023-11-15T14:30:43.990+0000] {python.py:183} INFO - Done. Returned value was: None
+[2023-11-15T14:30:44.001+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=peliculas_dag, task_id=send_email_alert, execution_date=20231115T143031, start_date=20231115T143043, end_date=20231115T143044
+[2023-11-15T14:30:44.022+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2023-11-15T14:30:44.042+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

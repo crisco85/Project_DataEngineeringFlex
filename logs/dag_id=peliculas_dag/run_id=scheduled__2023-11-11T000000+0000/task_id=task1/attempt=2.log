@@ -1,0 +1,20 @@
+[2023-11-15T17:44:47.475+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1 permission to 509
+[2023-11-15T17:44:47.486+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1 permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1'
+[2023-11-15T17:44:47.928+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1 permission to 509
+[2023-11-15T17:44:47.963+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1 permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1'
+[2023-11-15T17:44:48.438+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peliculas_dag.task1 scheduled__2023-11-11T00:00:00+00:00 [queued]>
+[2023-11-15T17:44:48.562+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peliculas_dag.task1 scheduled__2023-11-11T00:00:00+00:00 [queued]>
+[2023-11-15T17:44:48.574+0000] {taskinstance.py:1359} INFO - Starting attempt 2 of 6
+[2023-11-15T17:44:50.536+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): task1> on 2023-11-11 00:00:00+00:00
+[2023-11-15T17:44:50.675+0000] {standard_task_runner.py:57} INFO - Started process 81 to run task
+[2023-11-15T17:44:50.733+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'peliculas_dag', 'task1', 'scheduled__2023-11-11T00:00:00+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/peliculas_dag.py', '--cfg-path', '/tmp/tmp3odrkl14']
+[2023-11-15T17:44:50.881+0000] {standard_task_runner.py:85} INFO - Job 33: Subtask task1
+[2023-11-15T17:44:52.180+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1 permission to 509
+[2023-11-15T17:44:52.197+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1 permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=peliculas_dag/run_id=scheduled__2023-11-11T00:00:00+00:00/task_id=task1'
+[2023-11-15T17:44:52.298+0000] {task_command.py:415} INFO - Running <TaskInstance: peliculas_dag.task1 scheduled__2023-11-11T00:00:00+00:00 [running]> on host 566b22168472
+[2023-11-15T17:44:54.543+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='cristian' AIRFLOW_CTX_DAG_ID='peliculas_dag' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2023-11-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-11-11T00:00:00+00:00'
+[2023-11-15T17:44:54.595+0000] {logging_mixin.py:151} INFO - Error al conectar a la base de datos: invalid literal for int() with base 10: 'None'
+[2023-11-15T17:44:54.613+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-11-15T17:44:54.716+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=peliculas_dag, task_id=task1, execution_date=20231111T000000, start_date=20231115T174448, end_date=20231115T174454
+[2023-11-15T17:44:54.973+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-11-15T17:44:55.629+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

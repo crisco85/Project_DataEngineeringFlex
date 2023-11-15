@@ -1,0 +1,15 @@
+[2023-11-15T13:02:38.479+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peliculas_dag.task2 scheduled__2023-11-07T00:00:00+00:00 [queued]>
+[2023-11-15T13:02:38.810+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peliculas_dag.task2 scheduled__2023-11-07T00:00:00+00:00 [queued]>
+[2023-11-15T13:02:38.817+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 6
+[2023-11-15T13:02:39.240+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): task2> on 2023-11-07 00:00:00+00:00
+[2023-11-15T13:02:39.319+0000] {standard_task_runner.py:57} INFO - Started process 163 to run task
+[2023-11-15T13:02:39.358+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'peliculas_dag', 'task2', 'scheduled__2023-11-07T00:00:00+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/peliculas_dag.py', '--cfg-path', '/tmp/tmprszklu4y']
+[2023-11-15T13:02:39.375+0000] {standard_task_runner.py:85} INFO - Job 20: Subtask task2
+[2023-11-15T13:02:41.280+0000] {task_command.py:410} INFO - Running <TaskInstance: peliculas_dag.task2 scheduled__2023-11-07T00:00:00+00:00 [running]> on host f8ec5917e7b3
+[2023-11-15T13:02:45.532+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='cristian' AIRFLOW_CTX_DAG_ID='peliculas_dag' AIRFLOW_CTX_TASK_ID='task2' AIRFLOW_CTX_EXECUTION_DATE='2023-11-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-11-07T00:00:00+00:00'
+[2023-11-15T13:02:52.302+0000] {logging_mixin.py:149} INFO - Error al obtener datos de la API o cargarlos en la base de datos: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+	Is the server running locally and accepting connections on that socket?
+[2023-11-15T13:02:52.499+0000] {python.py:183} INFO - Done. Returned value was: None
+[2023-11-15T13:02:53.742+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=peliculas_dag, task_id=task2, execution_date=20231107T000000, start_date=20231115T130238, end_date=20231115T130253
+[2023-11-15T13:02:55.081+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2023-11-15T13:02:56.759+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

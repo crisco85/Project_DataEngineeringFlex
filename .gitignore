@@ -2,3 +2,4 @@
 dag_processor_manager
 scheduler
 __pycache__
+.airflow.cfg
